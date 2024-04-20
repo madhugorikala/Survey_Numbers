@@ -1,0 +1,29 @@
+import requests
+import json
+
+def get_survey_numbers(district, mandal, village):
+    url = "https://dharani.telangana.gov.in/knowLandStatus"
+    data = {
+        "District": district,
+        "Mandal": mandal,
+        "Village": village
+    }
+    response = requests.post(url, data=data)
+    if response.status_code == 200:
+        try:
+            survey_numbers = response.json()
+            if survey_numbers:
+                print("Survey Numbers:")
+                for number in survey_numbers:
+                    print(number)
+            else:
+                print("No survey numbers found for the provided district, mandal, and village.")
+        except json.JSONDecodeError:
+            print("Unable to decode server response as JSON.")
+    else:
+        print("Error occurred while fetching survey numbers.")
+
+# Example usage
+district = input("Enter district: ")
+mandal = input("Enter mandal: ")
+village = input("Enter village: ")
