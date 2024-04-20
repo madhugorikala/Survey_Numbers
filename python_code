@@ -27,3 +27,4 @@ def get_survey_numbers(district, mandal, village):
 district = input("Enter district: ")
 mandal = input("Enter mandal: ")
 village = input("Enter village: ")
+get_survey_numbers(district, mandal, village)
